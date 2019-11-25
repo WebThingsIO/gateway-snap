@@ -7,5 +7,10 @@ Web of Things gateway.
 ```sh
 # Building requires snapcraft 3.9+, which is currently unreleased
 sudo snap install --candidate snapcraft
+
+# Clean up any old builds
+snapcraft clean
+
+# Build the package
 snapcraft
 ```

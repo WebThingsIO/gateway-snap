@@ -13,4 +13,7 @@ parts:
     nodejs-package-manager: npm
     nodejs-version: 8.16.2
     build-packages:
-    - git
+      - build-essential
+      - git
+      - pkg-config
+      - python
