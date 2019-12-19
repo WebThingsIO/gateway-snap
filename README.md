@@ -1,12 +1,12 @@
 # WebThings Gateway by Mozilla
 
-Web of Things gateway.
+Snap package for Mozilla's WebThings Gateway.
 
 ## Building
 
 ```sh
-# Building requires snapcraft 3.9+, which is currently unreleased
-sudo snap install --candidate snapcraft
+# Building requires snapcraft 3.9+
+sudo snap install snapcraft --classic
 
 # Clean up any old builds
 snapcraft clean
