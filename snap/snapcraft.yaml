@@ -21,15 +21,38 @@ parts:
       - pkg-config
       - python
     override-build: |
+      # Add the locally installed npm to our path.
+      # export makes it also propagate into the sub-shell.
       export PATH=$PATH:$(pwd)/../npm/bin
+
+      # Allow npm to run as root properly
+      # https://docs.npmjs.com/misc/config#unsafe-perm
       npm config -g set unsafe-perm true
+
+      # Install node-gyp, as it didn't seem to get installed by `npm install`
+      # for some reason
       npm install -g node-gyp
+
+      # Clean up and let npm do a clean install.
       rm -rf ./node_modules package-lock.json
+
+      # Start a sub-shell so that the SUDO_* bits aren't propagated to the rest
+      # of the process unnecessarily.
       (
+        # Make the subshell exit if one of the commands fails
         set -e
+
+        # Unset the sudo environment variables to make git happy
+        # https://github.com/snapcore/snapcraft/commit/93fd2825733ea8725502d2ab62124be5179c6407
         unset SUDO_UID
         unset SUDO_GID
+
+        # Install all of the necessary node modules
         npm install
+
+        # Run the webpack process now, rather than at each launch
         ./node_modules/.bin/webpack
+
+        # Remove all but production dependencies
         npm prune --production
       )
