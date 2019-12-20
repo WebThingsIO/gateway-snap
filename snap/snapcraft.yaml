@@ -1,0 +1,35 @@
+name: webthings-gateway
+version: 0.10.0
+summary: WebThings Gateway by Mozilla
+description: Directly monitor and control your home over the web.
+
+base: core18
+grade: devel
+confinement: devmode
+
+parts:
+  webthings-gateway:
+    source: https://github.com/mozilla-iot/gateway.git
+    source-type: git
+    source-tag: 0.10.0
+    plugin: better-nodejs
+    nodejs-package-manager: npm
+    nodejs-version: 8.17.0
+    build-packages:
+      - build-essential
+      - git
+      - pkg-config
+      - python
+    override-build: |
+      export PATH=$PATH:$(pwd)/../npm/bin
+      npm config -g set unsafe-perm true
+      npm install -g node-gyp
+      rm -rf ./node_modules package-lock.json
+      (
+        set -e
+        unset SUDO_UID
+        unset SUDO_GID
+        npm install
+        ./node_modules/.bin/webpack
+        npm prune --production
+      )
