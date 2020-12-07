@@ -1,6 +1,6 @@
-# WebThings Gateway by Mozilla
+# WebThings Gateway
 
-Snap package for Mozilla's WebThings Gateway.
+Snap package for WebThings Gateway.
 
 ## Building
 
