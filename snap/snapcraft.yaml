@@ -17,6 +17,7 @@ parts:
     nodejs-version: 10.23.0
     build-packages:
       - autoconf
+      - automake
       - build-essential
       - git
       - libtool
