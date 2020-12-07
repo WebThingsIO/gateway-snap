@@ -19,6 +19,7 @@ parts:
       - autoconf
       - build-essential
       - git
+      - libtool
       - pkg-config
       - python
     override-build: |
