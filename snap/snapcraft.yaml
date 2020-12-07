@@ -33,9 +33,6 @@ parts:
       # for some reason
       npm install -g node-gyp
 
-      # Clean up and let npm do a clean install.
-      rm -rf ./node_modules package-lock.json
-
       # Start a sub-shell so that the SUDO_* bits aren't propagated to the rest
       # of the process unnecessarily.
       (
