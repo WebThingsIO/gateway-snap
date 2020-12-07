@@ -82,7 +82,7 @@ parts:
       )
 
       # Install Python library
-      python3 -m pip install --system --install-option="--prefix=" --no-binary=:all: -r ./requirements.txt
+      pip3 install --system --install-option="--prefix=" --no-binary=":all:" -r ./requirements.txt
 
       # Install things into the snap
       mkdir -p $SNAPCRAFT_PART_INSTALL/opt
